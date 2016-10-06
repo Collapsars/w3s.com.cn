@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import Router from 'koa-router';
 import home from '../controllers/home';
-
+import articles from '../controllers/articles';
 
 const basename = path.basename(module.filename);
 const router = Router();
@@ -29,6 +29,9 @@ router.get('/html', home.html);
 router.get('/try', home.attempt);
 
 router.post('/testphp', home.testt);
+
+router.get('/create', articles.create);
+router.get('/show', articles.show);
 
 export default router;
 
