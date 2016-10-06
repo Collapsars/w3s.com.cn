@@ -46,3 +46,6 @@ jspm_packages
 
 # vsc setting
 .vscode
+
+# webstorm setting
+.idea

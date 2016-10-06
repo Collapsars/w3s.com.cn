@@ -23,6 +23,13 @@ function ArticleModel(sequelize, DataTypes) {
         len: [1, 200]
       }
     },
+    path:{
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: true,
+        len: [1, 100]
+      }
+    },
     content: {
       type: DataTypes.TEXT,
       validate: {

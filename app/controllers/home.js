@@ -13,7 +13,7 @@ const index = function *(next){
 
 
 const html = function *(next) {
-    yield this.render('html/html-tutorial');
+    yield this.render('html/tutorial');
 }
 
 const attempt = function *(next) {
@@ -32,17 +32,17 @@ const testt = function *(next) {
             'code':this.request.body.code,
             'language':3
         }
-               
+
     };
 
      let result = yield  request(options);
 
      console.log("body",result.body);
      this.body = yield JSON.parse(result.body) ;
-      
-    
 
- 
+
+
+
 }
 
 export default {
