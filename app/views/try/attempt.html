@@ -4,81 +4,108 @@
 <script type="text/javascript" src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <div class="row" style="background-color: #e5eecc;">
-      <div class="panel panel-default" style="margin-bottom:0;">
-   
-  
-      <div class="panel-body" style="background-color: #e5eecc;border-color: #e5eecc;">
-      <form autocomplete="off" role="form">
-   
-                <div class="row">
-                  <div class="col-sm-6">
-                  
-                    <div class="row-fluid">
-                   <label class="inline"><strong style="font-size: 16px;color:#617f10;">PHP 源代码:</strong></label>
-                   <input id="submitBTN" type="button" class="pull-right inline" value="提交运行 »">
-                   <input type="hidden" id="bt" name="bt"> 
-                    <input type="hidden" name="code" id="code">
-                    </div>
-                    <textarea class="form-control" id="textareaCode" name="textareaCode" style="display: none;">&lt;!DOCTYPE html&gt; 
-&lt;html&gt; 
-&lt;body&gt; 
+    <div class="panel panel-default" style="margin-bottom:0;">
 
-&lt;?php 
-echo "Hello World!"; 
-?&gt; 
 
-&lt;/body&gt; 
-&lt;/html&gt;</textarea><div class="CodeMirror cm-s-default"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="0"></textarea></div><div class="CodeMirror-vscrollbar" cm-not-content="true"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-hscrollbar" cm-not-content="true"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: -17px; border-right-width: 13px; min-height: 178px; min-width: 133px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 17px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-meta">&lt;!DOCTYPE html&gt;</span> </span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">html</span><span class="cm-tag cm-bracket">&gt;</span> </span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">body</span><span class="cm-tag cm-bracket">&gt;</span> </span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-meta">&lt;?php</span> </span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-keyword">echo</span> <span class="cm-string">"Hello World!"</span>; </span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-meta">?&gt;</span> </span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">body</span><span class="cm-tag cm-bracket">&gt;</span> </span></pre><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">html</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 13px; width: 1px; top: 178px;"></div><div class="CodeMirror-gutters" style="display: none; height: 463px;"></div></div></div>
-                    
+        <div class="panel-body" style="background-color: #e5eecc;border-color: #e5eecc;">
+          <%- content %>
 
-                  </div>
-                  <div class="col-sm-6">
-                 
-                  <label><strong style="font-size: 16px;color:#617f10;"> 运行结果：</strong></label>
-                   <label class="pull-right"><a href="http://c.runoob.com" target="_blank" style="font-size: 16px;color:#617f10;text-decoration: underline;"> 菜鸟工具</a></label>
-                  
-                   
-                 <div id="iframewrapper"><iframe frameborder="0" id="iframeResult"></iframe></div>
-                  </div>
-                </div>
-              </form></div>
-             
-             
-            
-      </div>
+        </div>
+
+
+
     </div>
+</div>
 
-    <script>
-  var editor = CodeMirror.fromTextArea(document.getElementById("textareaCode"), {
-        lineNumbers: false,
-        matchBrackets: true,
-        mode: "application/x-httpd-php",
-        indentUnit: 4,
-        indentWithTabs: true
-  });
+ <script>
+//     var editor = CodeMirror.fromTextArea(document.getElementById("textareaCode"), {
+//         lineNumbers: false,
+//         matchBrackets: true,
+//         mode: "application/x-httpd-php",
+//         indentUnit: 4,
+//         indentWithTabs: true
+//     });
+//     var ifr = document.createElement("iframe");
+//     ifr.setAttribute("frameborder", "0");
+//     ifr.setAttribute("id", "iframeResult");
+//     document.getElementById("iframewrapper").innerHTML = "";
+//     document.getElementById("iframewrapper").appendChild(ifr);
+//     var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+//     ifrw.document.open();
+//     ifrw.document.write("<html><head><\/head><body><br> <br> <br><br>Hello World! <br><br> <br><\/body><\/html>");
+//     ifrw.document.close();
+//     $("#submitBTN").click(function() {
+//         code = editor.getValue();
+//         runcode = 3;
+//         loadingdata = '<img src="/static/img/loading.gif">';
+//         ifrw.document.open();
+//         ifrw.document.write(loadingdata);
+//         ifrw.document.close();
+//         //console.log("code",code);
+//         $.post("./testphp", {
+//             code: code,
+//             language: runcode
+//         }, function(data) {
+//             console.log(data);
+//             text = data.output.replace(/\r\n|\r|\n/g, "<br />") + data.errors;
+//             ifrw.document.open();
+//             ifrw.document.write(text);
+//             ifrw.document.close();
+//         });
+//     })
+ </script>
+ <script>
+// Define an extended mixed-mode that understands vbscript and
+// leaves mustache/handlebars embedded templates in html mode
+var mixedMode = {
+name: "htmlmixed",
+scriptTypes: [{matches: /\/x-handlebars-template|\/x-mustache/i,
+               mode: null},
+              {matches: /(text|application)\/(x-)?vb(a|script)/i,
+               mode: "vbscript"}]
+};
+var editor = CodeMirror.fromTextArea(document.getElementById("textareaCode"), {
+mode: mixedMode,
+selectionPointer: true,
+lineNumbers: false,
+matchBrackets: true,
+indentUnit: 4,
+indentWithTabs: true
+});
+
+function submitTryit() {
+  var text = editor.getValue();
+  var patternHtml = /<html[^>]*>((.|[\n\r])*)<\/html>/im
+  var patternHead = /<head[^>]*>((.|[\n\r])*)<\/head>/im
+  var array_matches_head = patternHead.exec(text);
+  var patternBody = /<body[^>]*>((.|[\n\r])*)<\/body>/im;
+
+  var array_matches_body = patternBody.exec(text);
+  var basepath_flag = 1;
+  var basepath = '';
+  if(basepath_flag) {
+    basepath = '<base href="http://www.runoob.com/try/demo_source/" target="_blank">';
+  }
+  if(array_matches_head) {
+    text = text.replace('<head>', '<head>' + basepath );
+  } else if (patternHtml) {
+    text = text.replace('<html>', '<head>' + basepath + '</head>');
+  } else if (array_matches_body) {
+    text = text.replace('<body>', '<body>' + basepath );
+  } else {
+    text = basepath + text;
+  }
   var ifr = document.createElement("iframe");
   ifr.setAttribute("frameborder", "0");
-  ifr.setAttribute("id", "iframeResult");  
+  ifr.setAttribute("id", "iframeResult");
   document.getElementById("iframewrapper").innerHTML = "";
   document.getElementById("iframewrapper").appendChild(ifr);
+
   var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
   ifrw.document.open();
-  ifrw.document.write("<html><head><\/head><body><br> <br> <br><br>Hello World! <br><br> <br><\/body><\/html>");  
+  ifrw.document.write(text);
   ifrw.document.close();
-  $("#submitBTN").click(function() {
-  code = editor.getValue();
-  runcode = 3;
-  loadingdata = '<img src="/static/img/loading.gif">';
-  ifrw.document.open();
-  ifrw.document.write(loadingdata);  
-  ifrw.document.close();
-  //console.log("code",code);
-  $.post("./testphp",{code:code,language:runcode},function(data){
-  console.log(data);
-  text = data.output.replace(/\r\n|\r|\n/g,"<br />")  + data.errors;
-	ifrw.document.open();
-	ifrw.document.write(text);  
-	ifrw.document.close();
-  });
-})
+}
+submitTryit();
+
 </script>

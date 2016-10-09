@@ -33,4 +33,7 @@ router.post('/testphp', home.testt);
 router.get('/create', articles.create);
 router.get('/show', articles.show);
 
+router.get('/try/try.php', articles.attempt);
+
+
 export default router;

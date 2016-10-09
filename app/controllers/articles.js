@@ -36,8 +36,27 @@ const showw = function* (next) {
     yield this.render('html/tutorial',locals);
 };
 
+const attempt = function* (next) {
+    //console.log(this.query.filename)
+    let article = yield models.Article.findOne({
+      attributes:['content'],
+      where:{
+        path:this.query.filename
+      }
+    });
+    const locals = {
+        content : article.content
+    };
+    //this.body = article;
+    //onsole.log("article",locals.content);
+    yield this.render('try/attempt',locals);
+};
+
+
+
 export default {
     create,
     show,
-    showw
+    showw,
+    attempt
 }
