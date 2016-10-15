@@ -4,7 +4,7 @@ import models from '../models/index';
 
 
 const create = function* (next) {
-    const article = yield models.Article.create({title:"w3s",content:"w3x.com"});
+    const article = yield models.Article.create({ title: "w3s", content: "w3x.com" });
     this.body = "create";
 };
 
@@ -12,44 +12,79 @@ const show = function* (next) {
 
     let article = yield models.Article.findById(1);
     const locals = {
-        content : article.content
+        content: article.content
     };
     //this.body = article;
     //onsole.log("article",locals.content);
-    yield this.render('html/tutorial',locals);
+    yield this.render('html/tutorial', locals);
 };
 
 
 const showw = function* (next) {
     console.log(this.params.name)
     let article = yield models.Article.findOne({
-      attributes:['content'],
-      where:{
-        path:this.params.name
-      }
+        attributes: ['content'],
+        where: {
+            path: this.params.name
+        }
     });
     const locals = {
-        content : article.content
+        content: article.content
     };
     //this.body = article;
     //onsole.log("article",locals.content);
-    yield this.render('html/tutorial',locals);
+    yield this.render('html/tutorial', locals);
 };
+
+
+const showww = function* (next) {
+    console.log(this.params.type)
+    console.log(this.params.name)
+    if (this.params.type != 'try') {
+        let article = yield models.Article.findOne({
+            attributes: ['content'],
+            where: {
+                path: `${this.params.type}/${this.params.name}`
+            }
+        });
+        const locals = {
+            content: article.content
+        };
+        //this.body = article;
+        //onsole.log("article",locals.content);
+        yield this.render('html/tutorial', locals);
+    } else {
+        let article = yield models.Article.findOne({
+            attributes: ['content'],
+            where: {
+                path: `${this.params.type}/${this.params.name}?filename=${this.query.filename}`
+            }
+        });
+        const locals = {
+            content: article.content
+        };
+        //this.body = article;
+        //onsole.log("article",locals.content);
+        yield this.render('try/attempt', locals);
+    }
+
+};
+
 
 const attempt = function* (next) {
     //console.log(this.query.filename)
     let article = yield models.Article.findOne({
-      attributes:['content'],
-      where:{
-        path:this.query.filename
-      }
+        attributes: ['content'],
+        where: {
+            path: "filename=" + this.query.filename
+        }
     });
     const locals = {
-        content : article.content
+        content: article.content
     };
     //this.body = article;
     //onsole.log("article",locals.content);
-    yield this.render('try/attempt',locals);
+    yield this.render('try/attempt', locals);
 };
 
 
@@ -58,5 +93,6 @@ export default {
     create,
     show,
     showw,
+    showww,
     attempt
 }

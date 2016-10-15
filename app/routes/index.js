@@ -26,14 +26,16 @@ router.get('/', home.index);
 
 //router.get('/html', home.html);
 
-router.get('/try', home.attempt);
+// router.get('/try', home.attempt);
 
-router.post('/testphp', home.testt);
+// router.post('/testphp', home.testt);
 
-router.get('/create', articles.create);
-router.get('/show', articles.show);
+// router.get('/create', articles.create);
+// router.get('/show', articles.show);
 
-router.get('/try/try.php', articles.attempt);
+// router.get('/try/try.php', articles.attempt);
+
+router.get('/:type/:name', articles.showww);
 
 
 export default router;

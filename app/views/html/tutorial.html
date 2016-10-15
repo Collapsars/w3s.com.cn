@@ -1,1 +1,27 @@
-<%- content %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <% include  ../public/header.html %>
+
+  <% include  ../public/nav.html %>
+
+
+  <!--  内容  -->
+  <div class="container main">
+      <%- content %>
+  </div>      
+
+  <% include  ../public/footer.html %>
+
+</body>
+
+</html>
+
+
