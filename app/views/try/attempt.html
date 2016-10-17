@@ -35,60 +35,31 @@
 
 
 	<script>
-//     var editor = CodeMirror.fromTextArea(document.getElementById("textareaCode"), {
-//         lineNumbers: false,
-//         matchBrackets: true,
-//         mode: "application/x-httpd-php",
-//         indentUnit: 4,
-//         indentWithTabs: true
-//     });
-//     var ifr = document.createElement("iframe");
-//     ifr.setAttribute("frameborder", "0");
-//     ifr.setAttribute("id", "iframeResult");
-//     document.getElementById("iframewrapper").innerHTML = "";
-//     document.getElementById("iframewrapper").appendChild(ifr);
-//     var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
-//     ifrw.document.open();
-//     ifrw.document.write("<html><head><\/head><body><br> <br> <br><br>Hello World! <br><br> <br><\/body><\/html>");
-//     ifrw.document.close();
-//     $("#submitBTN").click(function() {
-//         code = editor.getValue();
-//         runcode = 3;
-//         loadingdata = '<img src="/static/img/loading.gif">';
-//         ifrw.document.open();
-//         ifrw.document.write(loadingdata);
-//         ifrw.document.close();
-//         //console.log("code",code);
-//         $.post("./testphp", {
-//             code: code,
-//             language: runcode
-//         }, function(data) {
-//             console.log(data);
-//             text = data.output.replace(/\r\n|\r|\n/g, "<br />") + data.errors;
-//             ifrw.document.open();
-//             ifrw.document.write(text);
-//             ifrw.document.close();
-//         });
-//     })
+
  </script>
 	<script>
-// Define an extended mixed-mode that understands vbscript and
-// leaves mustache/handlebars embedded templates in html mode
-var mixedMode = {
-name: "htmlmixed",
-scriptTypes: [{matches: /\/x-handlebars-template|\/x-mustache/i,
-               mode: null},
-              {matches: /(text|application)\/(x-)?vb(a|script)/i,
-               mode: "vbscript"}]
-};
-var editor = CodeMirror.fromTextArea(document.getElementById("textareaCode"), {
-mode: mixedMode,
-selectionPointer: true,
-lineNumbers: false,
-matchBrackets: true,
-indentUnit: 4,
-indentWithTabs: true
-});
+
+<% if (runcode == null){ %> 
+
+      // Define an extended mixed-mode that understands vbscript and
+      // leaves mustache/handlebars embedded templates in html mode
+      var mixedMode = {
+      name: "htmlmixed",
+      scriptTypes: [{matches: /\/x-handlebars-template|\/x-mustache/i,
+                    mode: null},
+                    {matches: /(text|application)\/(x-)?vb(a|script)/i,
+                    mode: "vbscript"}]
+      };
+      var editor = CodeMirror.fromTextArea(document.getElementById("textareaCode"), {
+      mode: mixedMode,
+      selectionPointer: true,
+      lineNumbers: false,
+      matchBrackets: true,
+      indentUnit: 4,
+      indentWithTabs: true
+      });
+
+      submitTryit();
 
 function submitTryit() {
   var text = editor.getValue();
@@ -123,7 +94,62 @@ function submitTryit() {
   ifrw.document.write(text);
   ifrw.document.close();
 }
-submitTryit();
+<% }  else{%>
+
+      var editor = CodeMirror.fromTextArea(document.getElementById("textareaCode"), {
+        lineNumbers: false,
+        matchBrackets: true,
+        mode: "application/x-httpd-php",
+        indentUnit: 4,
+        indentWithTabs: true
+    });
+    var ifr = document.createElement("iframe");
+    ifr.setAttribute("frameborder", "0");
+    ifr.setAttribute("id", "iframeResult");
+    document.getElementById("iframewrapper").innerHTML = "";
+    document.getElementById("iframewrapper").appendChild(ifr);
+    var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+    ifrw.document.open();
+    ifrw.document.write("<html><head><\/head><body><br> <br> <br><br>Hello World! <br><br> <br><\/body><\/html>");
+    ifrw.document.close();
+    $("#submitBTN").click(function() {
+        code = editor.getValue();
+        runcode = <%= runcode %>;
+        loadingdata = '<img src="/static/img/loading.gif">';
+        ifrw.document.open();
+        ifrw.document.write(loadingdata);
+        ifrw.document.close();
+        //console.log("code",code);
+        $.post("/html/run", {
+            code: code,
+            language: runcode
+        }, function(data) {
+            console.log(data);
+            text = data.output.replace(/\r\n|\r|\n/g, "<br />") + data.errors;
+            ifrw.document.open();
+            ifrw.document.write(text);
+            ifrw.document.close();
+        });
+    })
+
+<% } %>
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 

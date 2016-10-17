@@ -20,7 +20,7 @@ const attempt = function *(next) {
     yield this.render('try/attempt');
 }
 
-const testt = function *(next) {
+const run = function *(next) {
     console.log("ctx.body.code",this.request.body.code);
     //await ctx.render('try/attempt');
    //await console.log("ctx.body.code",  ctx.request);
@@ -30,7 +30,7 @@ const testt = function *(next) {
 
         form : {
             'code':this.request.body.code,
-            'language':3
+            'language':this.request.body.language
         }
 
     };
@@ -40,14 +40,11 @@ const testt = function *(next) {
      console.log("body",result.body);
      this.body = yield JSON.parse(result.body) ;
 
-
-
-
 }
 
 export default {
     index,
     html,
     attempt,
-    testt
+    run
 };
